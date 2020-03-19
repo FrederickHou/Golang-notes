@@ -6,7 +6,7 @@
 >
 > 个人博客：[www.frederickhou.com](https://www.frederickhou.com/)
 
-* [目录](README.md)
+* [简介](README.md)
 * [Heketi](heketi/README.md)
     * [Heketi开发介绍](heketi/heketi_deploy_introduce.md)
     * [Heketi调用封装](heketi/heketi_deploy.md)
