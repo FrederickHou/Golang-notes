@@ -1,0 +1,613 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Golang channel · Golang 学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Frederick hou">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Golang-parameters.html" />
+    
+    
+    <link rel="prev" href="Golang-goroutine.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.frederickhou.com" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../introduce.html">
+            
+                <a href="../introduce.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Golang 基础篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="Golang-goroutine.html">
+            
+                <a href="Golang-goroutine.html">
+            
+                    
+                    Golang goroutine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="Golang-channel.html">
+            
+                <a href="Golang-channel.html">
+            
+                    
+                    Golang channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Golang-parameters.html">
+            
+                <a href="Golang-parameters.html">
+            
+                    
+                    Golang 不定参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="Golang-exception.html">
+            
+                <a href="Golang-exception.html">
+            
+                    
+                    Golang 异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="Golang-closure.html">
+            
+                <a href="Golang-closure.html">
+            
+                    
+                    Golang 闭包函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../heketi/">
+            
+                <a href="../heketi/">
+            
+                    
+                    Heketi
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../heketi/heketi_deploy_introduce.html">
+            
+                <a href="../heketi/heketi_deploy_introduce.html">
+            
+                    
+                    Heketi开发介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../heketi/heketi_deploy.html">
+            
+                <a href="../heketi/heketi_deploy.html">
+            
+                    
+                    Heketi调用封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Golang channel</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#channel&#x7B80;&#x4ECB;"><b></b>channel&#x7B80;&#x4ECB;</a></li><ul><li><span class="title-icon "></span><a href="#channel&#x4F7F;&#x7528;"><b></b>channel&#x4F7F;&#x7528;</a></li><li><span class="title-icon "></span><a href="#&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel"><b></b>&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel</a></li><li><span class="title-icon "></span><a href="#channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;"><b></b>channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;</a></li><li><span class="title-icon "></span><a href="#select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel"><b></b>select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel</a></li><li><span class="title-icon "></span><a href="#channel&#x9891;&#x7387;&#x63A7;&#x5236;"><b></b>channel&#x9891;&#x7387;&#x63A7;&#x5236;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="channel&#x7B80;&#x4ECB;"><a name="channel&#x7B80;&#x4ECB;" class="anchor-navigation-ex-anchor" href="#channel&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channel&#x7B80;&#x4ECB;" class="plugin-anchor" href="#channel&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a>channel&#x7B80;&#x4ECB;</h2>
+<p>channel&#x4FD7;&#x79F0;&#x7BA1;&#x9053;&#xFF0C;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x4F20;&#x9012;&#x6216;&#x6570;&#x636E;&#x5171;&#x4EAB;&#xFF0C;&#x5176;&#x672C;&#x8D28;&#x662F;&#x4E00;&#x4E2A;&#x5148;&#x8FDB;&#x5148;&#x51FA;&#x7684;&#x961F;&#x5217;&#xFF0C;&#x4F7F;&#x7528;goroutine+channel&#x8FDB;&#x884C;&#x6570;&#x636E;&#x901A;&#x8BAF;&#x7B80;&#x5355;&#x9AD8;&#x6548;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF0C;&#x591A;&#x4E2A;goroutine&#x53EF;&#x540C;&#x65F6;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;channel&#xFF0C;<strong>&#x4E0D;&#x9700;&#x8981;&#x52A0;&#x9501;</strong>&#x3002;</p>
+<p>channel&#x53EF;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#x7C7B;&#x578B;&#xFF1A;</p>
+<ul>
+<li><p>&#x53EA;&#x8BFB;channel&#xFF1A;&#x53EA;&#x80FD;&#x8BFB;channel&#x91CC;&#x9762;&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x53EF;&#x5199;&#x5165;</p>
+</li>
+<li><p>&#x53EA;&#x5199;channel&#xFF1A;&#x53EA;&#x80FD;&#x5199;&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x53EF;&#x8BFB;</p>
+</li>
+<li><p>&#x4E00;&#x822C;channel&#xFF1A;&#x53EF;&#x8BFB;&#x53EF;&#x5199;</p>
+</li>
+</ul>
+<h3 id="channel&#x4F7F;&#x7528;"><a name="channel&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#channel&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channel&#x4F7F;&#x7528;" class="plugin-anchor" href="#channel&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>channel&#x4F7F;&#x7528;</h3>
+<p>&#x5B9A;&#x4E49;&#x548C;&#x58F0;&#x660E;</p>
+<pre><code>var readOnlyChan &lt;-chan int            // &#x53EA;&#x8BFB;chan
+var writeOnlyChan chan&lt;- int           // &#x53EA;&#x5199;chan
+var mychan  chan int                     //&#x8BFB;&#x5199;channel
+//&#x5B9A;&#x4E49;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#x9700;&#x8981;make&#x6765;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x4E0D;&#x7136;&#x4F7F;&#x7528;&#x4F1A;deadlock
+mychannel = make(chan int,10)
+
+//&#x6216;&#x8005;
+read_only := make (&lt;-chan int,10)//&#x5B9A;&#x4E49;&#x53EA;&#x8BFB;&#x7684;channel
+write_only := make (chan&lt;- int,10)//&#x5B9A;&#x4E49;&#x53EA;&#x5199;&#x7684;channel
+read_write := make (chan int,10)//&#x53EF;&#x540C;&#x65F6;&#x8BFB;&#x5199;
+
+//&#x64CD;&#x4F5C;
+write_only &lt;- &quot;wd&quot;  //&#x5199;&#x6570;&#x636E;
+a := &lt;- read_only //&#x8BFB;&#x53D6;&#x6570;&#x636E;
+a, ok := &lt;- read_only  //&#x4F18;&#x96C5;&#x7684;&#x8BFB;&#x53D6;&#x6570;&#x636E;
+</code></pre><p><strong>&#x6CE8;&#xFF1A;</strong></p>
+<ul>
+<li>&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x6CE8;&#x610F;&#xFF1A;<ul>
+<li>&#x7BA1;&#x9053;&#x5982;&#x679C;&#x672A;&#x5173;&#x95ED;&#xFF0C;&#x5728;&#x8BFB;&#x53D6;&#x8D85;&#x65F6;&#x4F1A;&#x5219;&#x4F1A;&#x5F15;&#x53D1;deadlock&#x5F02;&#x5E38;</li>
+<li>&#x7BA1;&#x9053;&#x5982;&#x679C;&#x5173;&#x95ED;&#x8FDB;&#x884C;&#x5199;&#x5165;&#x6570;&#x636E;&#x4F1A;pannic</li>
+<li>&#x5F53;&#x7BA1;&#x9053;&#x4E2D;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x65F6;&#x5019;&#x518D;&#x884C;&#x8BFB;&#x53D6;&#x6216;&#x8BFB;&#x53D6;&#x5230;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5982;int&#x7C7B;&#x578B;&#x9ED8;&#x8BA4;&#x503C;&#x662F;0</li>
+</ul>
+</li>
+<li>&#x5FAA;&#x73AF;&#x7BA1;&#x9053;&#x6CE8;&#x610F;&#xFF1A;<ul>
+<li>&#x4F7F;&#x7528;range&#x5FAA;&#x73AF;&#x7BA1;&#x9053;&#xFF0C;&#x5982;&#x679C;&#x7BA1;&#x9053;&#x672A;&#x5173;&#x95ED;&#x4F1A;&#x5F15;&#x53D1;deadlock&#x9519;&#x8BEF;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x91C7;&#x7528;for&#x6B7B;&#x5FAA;&#x73AF;&#x5DF2;&#x7ECF;&#x5173;&#x95ED;&#x7684;&#x7BA1;&#x9053;&#xFF0C;&#x5F53;&#x7BA1;&#x9053;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x65F6;&#x5019;&#xFF0C;&#x8BFB;&#x53D6;&#x7684;&#x6570;&#x636E;&#x4F1A;&#x662F;&#x7BA1;&#x9053;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x5FAA;&#x73AF;&#x4E0D;&#x4F1A;&#x9000;&#x51FA;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<p>&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {
+    mychannel := make(chan int,10)
+    for i := 0;i &lt; 10;i++{
+        mychannel &lt;- i
+    }
+    close(mychannel)  //&#x5173;&#x95ED;&#x7BA1;&#x9053;
+    fmt.Println(&quot;data lenght: &quot;,len(mychannel))
+    for  v := range mychannel {  //&#x5FAA;&#x73AF;&#x7BA1;&#x9053;
+        fmt.Println(v)
+    }
+    fmt.Printf(&quot;data lenght:  %d&quot;,len(mychannel))
+}
+</code></pre><h3 id="&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel"><a name="&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel" class="anchor-navigation-ex-anchor" href="#&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel" class="plugin-anchor" href="#&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#x548C;&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel</h3>
+<p>&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#xFF1A;&#x5B9A;&#x4E49;&#x58F0;&#x660E;&#x65F6;&#x5019;&#x5236;&#x5B9A;&#x4E86;&#x7F13;&#x51B2;&#x533A;&#x5927;&#x5C0F;(&#x957F;&#x5EA6;)&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x5B58;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x3002;</p>
+<pre><code>ch := make(chan int ,10) //&#x5E26;&#x7F13;&#x51B2;&#x533A;
+</code></pre><p>&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;channel&#xFF1A;&#x53EA;&#x80FD;&#x5B58;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x6709;&#x5F53;&#x8BE5;&#x6570;&#x636E;&#x88AB;&#x53D6;&#x51FA;&#x65F6;&#x5019;&#x624D;&#x80FD;&#x5B58;&#x4E0B;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x3002;</p>
+<pre><code>ch := make(chan int) //&#x4E0D;&#x5E26;&#x7F13;&#x51B2;&#x533A;
+</code></pre><h3 id="channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;"><a name="channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;" class="anchor-navigation-ex-anchor" href="#channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;" class="plugin-anchor" href="#channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a>channel&#x5B9E;&#x73B0;&#x4F5C;&#x4E1A;&#x6C60;</h3>
+<p>&#x521B;&#x5EFA;&#x4E09;&#x4E2A;channel&#xFF0C;&#x4E00;&#x4E2A;channel&#x7528;&#x4E8E;&#x63A5;&#x53D7;&#x4EFB;&#x52A1;&#xFF0C;&#x4E00;&#x4E2A;channel&#x7528;&#x4E8E;&#x4FDD;&#x6301;&#x7ED3;&#x679C;&#xFF0C;&#x8FD8;&#x6709;&#x4E2A;channel&#x7528;&#x4E8E;&#x51B3;&#x5B9A;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;&#x7684;&#x65F6;&#x5019;&#x3002;</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+func Task(taskch, resch chan int, exitch chan bool) {
+    defer func() {   //&#x5F02;&#x5E38;&#x5904;&#x7406;
+        err := recover()
+        if err != nil {
+            fmt.Println(&quot;do task error&#xFF1A;&quot;, err)
+            return
+        }
+    }()
+
+    for t := range taskch { //  &#x5904;&#x7406;&#x4EFB;&#x52A1;
+        fmt.Println(&quot;do task :&quot;, t)
+        resch &lt;- t //
+    }
+    exitch &lt;- true //&#x5904;&#x7406;&#x5B8C;&#x53D1;&#x9001;&#x9000;&#x51FA;&#x4FE1;&#x53F7;
+}
+
+func main() {
+    taskch := make(chan int, 20) //&#x4EFB;&#x52A1;&#x7BA1;&#x9053;
+    resch := make(chan int, 20)  //&#x7ED3;&#x679C;&#x7BA1;&#x9053;
+    exitch := make(chan bool, 5) //&#x9000;&#x51FA;&#x7BA1;&#x9053;
+    go func() {
+        for i := 0; i &lt; 10; i++ {
+            taskch &lt;- i
+        }
+        close(taskch)
+    }()
+
+    for i := 0; i &lt; 5; i++ {  //&#x542F;&#x52A8;5&#x4E2A;goroutine&#x505A;&#x4EFB;&#x52A1;
+        go Task(taskch, resch, exitch)
+    }
+
+    go func() { //&#x7B49;5&#x4E2A;goroutine&#x7ED3;&#x675F;
+        for i := 0; i &lt; 5; i++ {
+            &lt;-exitch
+        }
+        close(resch)  //&#x4EFB;&#x52A1;&#x5904;&#x7406;&#x5B8C;&#x6210;&#x5173;&#x95ED;&#x7ED3;&#x679C;&#x7BA1;&#x9053;&#xFF0C;&#x4E0D;&#x7136;range&#x62A5;&#x9519;
+        close(exitch)  //&#x5173;&#x95ED;&#x9000;&#x51FA;&#x7BA1;&#x9053;
+    }()
+
+    for res := range resch{  //&#x6253;&#x5370;&#x7ED3;&#x679C;
+        fmt.Println(&quot;task res&#xFF1A;&quot;,res)
+    }
+}
+</code></pre><h3 id="select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel"><a name="select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel" class="anchor-navigation-ex-anchor" href="#select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel"><i class="fa fa-link" aria-hidden="true"></i></a><a name="select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel" class="plugin-anchor" href="#select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel"><i class="fa fa-link" aria-hidden="true"></i></a>select-case&#x5B9E;&#x73B0;&#x975E;&#x963B;&#x585E;channel</h3>
+<p>&#x539F;&#x7406;&#x901A;&#x8FC7;select+case&#x52A0;&#x5165;&#x4E00;&#x7EC4;&#x7BA1;&#x9053;&#xFF0C;&#x5F53;&#x6EE1;&#x8DB3;&#xFF08;&#x8FD9;&#x91CC;&#x8BF4;&#x7684;&#x6EE1;&#x8DB3;&#x610F;&#x601D;&#x662F;&#x6709;&#x6570;&#x636E;&#x53EF;&#x8BFB;&#x6216;&#x8005;&#x53EF;&#x5199;)select&#x4E2D;&#x7684;&#x67D0;&#x4E2A;case&#x65F6;&#x5019;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;case&#x8FD4;&#x56DE;&#xFF0C;&#x82E5;&#x90FD;&#x4E0D;&#x6EE1;&#x8DB3;case&#xFF0C;&#x5219;&#x8D70;default&#x5206;&#x652F;&#x3002;</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+func send(c chan int)  {
+    for i :=1 ; i&lt;10 ;i++  {
+    c &lt;-i
+    fmt.Println(&quot;send data : &quot;,i)
+    }
+}
+
+func main() {
+    resch := make(chan int,20)
+    strch := make(chan string,10)
+    go send(resch)
+    strch &lt;- &quot;wd&quot;
+    select {
+    case a := &lt;-resch:
+        fmt.Println(&quot;get data : &quot;, a)
+    case b := &lt;-strch:
+        fmt.Println(&quot;get data : &quot;, b)
+    default:
+        fmt.Println(&quot;no channel actvie&quot;)
+
+    }
+}
+</code></pre><h3 id="channel&#x9891;&#x7387;&#x63A7;&#x5236;"><a name="channel&#x9891;&#x7387;&#x63A7;&#x5236;" class="anchor-navigation-ex-anchor" href="#channel&#x9891;&#x7387;&#x63A7;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channel&#x9891;&#x7387;&#x63A7;&#x5236;" class="plugin-anchor" href="#channel&#x9891;&#x7387;&#x63A7;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>channel&#x9891;&#x7387;&#x63A7;&#x5236;</h3>
+<p>&#x5728;&#x5BF9;channel&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x7684;&#x65F6;&#xFF0C;go&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x975E;&#x5E38;&#x4EBA;&#x6027;&#x5316;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x5BF9;&#x8BFB;&#x5199;&#x7684;&#x9891;&#x7387;&#x63A7;&#x5236;&#xFF0C;&#x901A;&#x8FC7;time.Ticke&#x5B9E;&#x73B0;</p>
+<pre><code>package main
+
+import (
+    &quot;time&quot;
+    &quot;fmt&quot;
+)
+
+func main(){
+    requests:= make(chan int ,5)
+    for i:=1;i&lt;5;i++{
+        requests&lt;-i
+    }
+    close(requests)
+    limiter := time.Tick(time.Second*1)
+    for req:=range requests{
+        &lt;-limiter
+        fmt.Println(&quot;requets&quot;,req,time.Now()) //&#x6267;&#x884C;&#x5230;&#x8FD9;&#x91CC;&#xFF0C;&#x9700;&#x8981;&#x9694;1&#x79D2;&#x624D;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#xFF0C;time.Tick(timer)&#x4E0A;&#x9762;&#x5DF2;&#x5B9A;&#x4E49;
+    }
+}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Golang-goroutine.html" class="navigation navigation-prev " aria-label="Previous page: Golang goroutine">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Golang-parameters.html" class="navigation navigation-next " aria-label="Next page: Golang 不定参数">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Golang channel","level":"1.3.2","depth":2,"next":{"title":"Golang 不定参数","level":"1.3.3","depth":2,"path":"basis/Golang-parameters.md","ref":"basis/Golang-parameters.md","articles":[]},"previous":{"title":"Golang goroutine","level":"1.3.1","depth":2,"path":"basis/Golang-goroutine.md","ref":"basis/Golang-goroutine.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-channel.md","mtime":"2020-04-03T06:07:02.871Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-03T06:11:12.061Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
