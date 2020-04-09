@@ -69,7 +69,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Golang-channel.html" />
+    <link rel="next" href="Golang_memory_manager.html" />
     
     
     <link rel="prev" href="./" />
@@ -191,7 +191,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="Golang-channel.html">
+        <li class="chapter " data-level="1.3.2" data-path="Golang_memory_manager.html">
+            
+                <a href="Golang_memory_manager.html">
+            
+                    
+                    Golang 内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Golang-channel.html">
             
                 <a href="Golang-channel.html">
             
@@ -204,7 +217,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="Golang-parameters.html">
+        <li class="chapter " data-level="1.3.4" data-path="Golang-parameters.html">
             
                 <a href="Golang-parameters.html">
             
@@ -217,7 +230,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Golang-exception.html">
+        <li class="chapter " data-level="1.3.5" data-path="Golang-exception.html">
             
                 <a href="Golang-exception.html">
             
@@ -230,12 +243,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="Golang-closure.html">
+        <li class="chapter " data-level="1.3.6" data-path="Golang-closure.html">
             
                 <a href="Golang-closure.html">
             
                     
                     Golang 闭包函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="Golang-array-slice.html">
+            
+                <a href="Golang-array-slice.html">
+            
+                    
+                    Golang 切片和数组
             
                 </a>
             
@@ -253,7 +279,7 @@
                 <a href="../heketi/">
             
                     
-                    Heketi
+                    第三方开发
             
                 </a>
             
@@ -526,7 +552,7 @@ func main() {
                 </a>
                 
                 
-                <a href="Golang-channel.html" class="navigation navigation-next " aria-label="Next page: Golang channel">
+                <a href="Golang_memory_manager.html" class="navigation navigation-next " aria-label="Next page: Golang 内存分配">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -537,7 +563,7 @@ func main() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Golang goroutine","level":"1.3.1","depth":2,"next":{"title":"Golang channel","level":"1.3.2","depth":2,"path":"basis/Golang-channel.md","ref":"basis/Golang-channel.md","articles":[]},"previous":{"title":"Golang 基础篇","level":"1.3","depth":1,"path":"basis/README.md","ref":"basis/README.md","articles":[{"title":"Golang goroutine","level":"1.3.1","depth":2,"path":"basis/Golang-goroutine.md","ref":"basis/Golang-goroutine.md","articles":[]},{"title":"Golang channel","level":"1.3.2","depth":2,"path":"basis/Golang-channel.md","ref":"basis/Golang-channel.md","articles":[]},{"title":"Golang 不定参数","level":"1.3.3","depth":2,"path":"basis/Golang-parameters.md","ref":"basis/Golang-parameters.md","articles":[]},{"title":"Golang 异常处理","level":"1.3.4","depth":2,"path":"basis/Golang-exception.md","ref":"basis/Golang-exception.md","articles":[]},{"title":"Golang 闭包函数","level":"1.3.5","depth":2,"path":"basis/Golang-closure.md","ref":"basis/Golang-closure.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-goroutine.md","mtime":"2020-04-03T05:59:30.597Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-03T06:11:12.061Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Golang goroutine","level":"1.3.1","depth":2,"next":{"title":"Golang 内存分配","level":"1.3.2","depth":2,"path":"basis/Golang_memory_manager.md","ref":"basis/Golang_memory_manager.md","articles":[]},"previous":{"title":"Golang 基础篇","level":"1.3","depth":1,"path":"basis/README.md","ref":"basis/README.md","articles":[{"title":"Golang goroutine","level":"1.3.1","depth":2,"path":"basis/Golang-goroutine.md","ref":"basis/Golang-goroutine.md","articles":[]},{"title":"Golang 内存分配","level":"1.3.2","depth":2,"path":"basis/Golang_memory_manager.md","ref":"basis/Golang_memory_manager.md","articles":[]},{"title":"Golang channel","level":"1.3.3","depth":2,"path":"basis/Golang-channel.md","ref":"basis/Golang-channel.md","articles":[]},{"title":"Golang 不定参数","level":"1.3.4","depth":2,"path":"basis/Golang-parameters.md","ref":"basis/Golang-parameters.md","articles":[]},{"title":"Golang 异常处理","level":"1.3.5","depth":2,"path":"basis/Golang-exception.md","ref":"basis/Golang-exception.md","articles":[]},{"title":"Golang 闭包函数","level":"1.3.6","depth":2,"path":"basis/Golang-closure.md","ref":"basis/Golang-closure.md","articles":[]},{"title":"Golang 切片和数组","level":"1.3.7","depth":2,"path":"basis/Golang-array-slice.md","ref":"basis/Golang-array-slice.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-goroutine.md","mtime":"2020-04-03T06:11:18.669Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T01:33:36.114Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -568,10 +594,6 @@ func main() {
     
         
         <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
