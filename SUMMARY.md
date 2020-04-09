@@ -4,6 +4,7 @@
 * [目录](README.md)
 * [Golang 基础篇](basis/README.md)
     * [Golang goroutine](basis/Golang-goroutine.md)
+    * [Golang 内存分配](basis/Golang_memory_manager.md)
     * [Golang channel](basis/Golang-channel.md)
     * [Golang 不定参数](basis/Golang-parameters.md)
     * [Golang 异常处理](basis/Golang-exception.md)
