@@ -1,15 +1,3 @@
----
-layout:     post
-title:      Golang client-go 源码分析
-subtitle:   
-date:       2020-04-10
-author:     Frederick
-header-img: img/bk_go.jpg
-catalog: true
-tags:
-    - Golang
----
-
 # client-go 源码分析
 
 ## client-go 简介
