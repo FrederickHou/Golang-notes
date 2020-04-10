@@ -14,5 +14,6 @@
 * [第三方开发](heketi/README.md)
     * [Heketi开发介绍](heketi/heketi_deploy_introduce.md)
     * [Heketi调用封装](heketi/heketi_deploy.md)
+    * [kubernetes client-go 源码分析](k8s/Golang-client-go-analysis.md)
 
 
