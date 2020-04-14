@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Golang range的坑 · Golang 学习笔记</title>
+        <title>Golang select · Golang 学习笔记</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Golang-interface.html" />
+    <link rel="next" href="Golang-parameters.html" />
     
     
-    <link rel="prev" href="Golang-array-slice.html" />
+    <link rel="prev" href="Golang-channel.html" />
     
 
     
@@ -217,7 +217,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Golang-select.html">
+        <li class="chapter active" data-level="1.3.4" data-path="Golang-select.html">
             
                 <a href="Golang-select.html">
             
@@ -282,7 +282,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.9" data-path="Golang-range.html">
+        <li class="chapter " data-level="1.3.9" data-path="Golang-range.html">
             
                 <a href="Golang-range.html">
             
@@ -414,7 +414,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Golang range的坑</a>
+        <a href=".." >Golang select</a>
     </h1>
 </div>
 
@@ -429,50 +429,133 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#golang-range-&#x7684;&#x5751;"><b></b>Golang range &#x7684;&#x5751;</a></li><ul><li><span class="title-icon "></span><a href="#&#x9519;&#x8BEF;&#x793A;&#x4F8B;"><b></b>&#x9519;&#x8BEF;&#x793A;&#x4F8B;</a></li><li><span class="title-icon "></span><a href="#&#x6B63;&#x786E;&#x793A;&#x4F8B;"><b></b>&#x6B63;&#x786E;&#x793A;&#x4F8B;</a></li></ul></ul></div><a href="#golang-range-&#x7684;&#x5751;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="golang-range-&#x7684;&#x5751;"><a name="golang-range-&#x7684;&#x5751;" class="anchor-navigation-ex-anchor" href="#golang-range-&#x7684;&#x5751;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="golang-range-&#x7684;&#x5751;" class="plugin-anchor" href="#golang-range-&#x7684;&#x5751;"><i class="fa fa-link" aria-hidden="true"></i></a>Golang range &#x7684;&#x5751;</h1>
-<p>&#x4F7F;&#x7528; Go &#x8BED;&#x8A00;&#x7ECF;&#x5E38;&#x4F1A;&#x72AF;&#x7684;&#x9519;&#x8BEF;&#x6BD4;&#x5982;&#x5F53;&#x6211;&#x4EEC;&#x5728;&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x83B7;&#x53D6; range &#x8FD4;&#x56DE;&#x53D8;&#x91CF;&#x7684;&#x5730;&#x5740;&#x5E76;&#x4FDD;&#x5B58;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x6216;&#x8005;&#x54C8;&#x5E0C;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x9047;&#x5230;&#x4EE4;&#x4EBA;&#x56F0;&#x60D1;&#x7684;&#x73B0;&#x8C61;&#xFF1A;</p>
-<h2 id="&#x9519;&#x8BEF;&#x793A;&#x4F8B;"><a name="&#x9519;&#x8BEF;&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x9519;&#x8BEF;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9519;&#x8BEF;&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x9519;&#x8BEF;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9519;&#x8BEF;&#x793A;&#x4F8B;</h2>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#golang-select"><b></b>Golang select</a></li><ul><li><span class="title-icon "></span><a href="#&#x4ECB;&#x7ECD;"><b></b>&#x4ECB;&#x7ECD;</a></li><li><span class="title-icon "></span><a href="#&#x793A;&#x4F8B;1"><b></b>&#x793A;&#x4F8B;1</a></li><li><span class="title-icon "></span><a href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;"><b></b>&#x73B0;&#x8C61;&#x603B;&#x7ED3;</a></li><li><span class="title-icon "></span><a href="#&#x793A;&#x4F8B;2"><b></b>&#x793A;&#x4F8B;2</a></li><li><span class="title-icon "></span><a href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;_1"><b></b>&#x73B0;&#x8C61;&#x603B;&#x7ED3;</a></li></ul></ul></div><a href="#golang-select" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="golang-select"><a name="golang-select" class="anchor-navigation-ex-anchor" href="#golang-select"><i class="fa fa-link" aria-hidden="true"></i></a><a name="golang-select" class="plugin-anchor" href="#golang-select"><i class="fa fa-link" aria-hidden="true"></i></a>Golang select</h1>
+<h2 id="&#x4ECB;&#x7ECD;"><a name="&#x4ECB;&#x7ECD;" class="anchor-navigation-ex-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4ECB;&#x7ECD;" class="plugin-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ECB;&#x7ECD;</h2>
+<p>Go &#x8BED;&#x8A00;&#x4E2D;&#x7684; <strong>select</strong> &#x5173;&#x952E;&#x5B57;&#x4E5F;&#x80FD;&#x591F;&#x8BA9; Goroutine &#x540C;&#x65F6;&#x7B49;&#x5F85;&#x591A;&#x4E2A; Channel &#x7684;&#x53EF;&#x8BFB;&#x6216;&#x8005;&#x53EF;&#x5199;&#xFF0C;&#x5728;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x6216;&#x8005; Channel &#x53D1;&#x751F;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x4E4B;&#x524D;&#xFF0C;select &#x4F1A;&#x4E00;&#x76F4;&#x963B;&#x585E;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6216;&#x8005; Goroutine&#x3002;</p>
+<p>select &#x662F;&#x4E00;&#x79CD;&#x4E0E; switch &#x76F8;&#x4F3C;&#x7684;&#x63A7;&#x5236;&#x7ED3;&#x6784;&#xFF0C;&#x4E0E; switch &#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;select &#x4E2D;&#x867D;&#x7136;&#x4E5F;&#x6709;&#x591A;&#x4E2A; case&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E9B; case &#x4E2D;&#x7684;&#x8868;&#x8FBE;&#x5F0F;<strong>&#x5FC5;&#x987B;&#x90FD;&#x662F; Channel &#x7684;&#x6536;&#x53D1;&#x64CD;&#x4F5C;</strong>&#x3002;</p>
+<h2 id="&#x793A;&#x4F8B;1"><a name="&#x793A;&#x4F8B;1" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;1" class="plugin-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;1</h2>
 <pre><code>package main
+
 import (
     &quot;fmt&quot;
+    &quot;time&quot;
 )
-func main() {
-    arr := []int{1, 2, 3}
-    newArr := []*int{}
-    for _, v := range arr {
-        newArr = append(newArr, &amp;v)
-    }
-    for _, v := range newArr {
-        fmt.Println(*v)
+
+func test(consumer1, consumer2,consumer3 chan int,startTime time.Time) {
+    fmt.Println(&quot;Blocking on read...&quot;)
+    select {
+        case &lt;- consumer1:
+
+            fmt.Printf(&quot;Unblocked %v later.\n&quot;, time.Since(startTime))
+
+        case &lt;- consumer2:
+
+            fmt.Printf(&quot;ch2 case...&quot;)
+        case &lt;- consumer3:
+
+            fmt.Printf(&quot;ch3 case...&quot;)
+        default:
+
+            fmt.Printf(&quot;default go...&quot;)
     }
 }
-</code></pre><p><strong>&#x8F93;&#x51FA;</strong></p>
-<pre><code>3
-3
-3
-</code></pre><p><strong>&#x539F;&#x56E0;</strong></p>
-<p>&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x7684; range &#x5FAA;&#x73AF;&#xFF0C;Go &#x8BED;&#x8A00;&#x90FD;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C06;&#x539F;&#x5207;&#x7247;&#x6216;&#x8005;&#x6570;&#x7EC4;&#x8D4B;&#x503C;&#x7ED9;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x53D8;&#x91CF; ha&#xFF0C;&#x5728;&#x8D4B;&#x503C;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x5C31;&#x53D1;&#x751F;&#x4E86;&#x62F7;&#x8D1D;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x904D;&#x5386;&#x7684;&#x5207;&#x7247;&#x5DF2;&#x7ECF;&#x4E0D;&#x662F;&#x539F;&#x59CB;&#x7684;&#x5207;&#x7247;&#x53D8;&#x91CF;&#x4E86;&#x3002;</p>
-<p>&#x800C;&#x9047;&#x5230;&#x8FD9;&#x79CD;&#x540C;&#x65F6;&#x904D;&#x5386;&#x7D22;&#x5F15;&#x548C;&#x5143;&#x7D20;&#x7684; range &#x5FAA;&#x73AF;&#x65F6;&#xFF0C;Go &#x8BED;&#x8A00;&#x4F1A;&#x989D;&#x5916;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; v2 &#x53D8;&#x91CF;&#x5B58;&#x50A8;&#x5207;&#x7247;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5FAA;&#x73AF;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF; v2 &#x4F1A;&#x5728;&#x6BCF;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x88AB;&#x91CD;&#x65B0;&#x8D4B;&#x503C;&#x800C;&#x8986;&#x76D6;&#xFF0C;&#x5728;&#x8D4B;&#x503C;&#x65F6;&#x4E5F;&#x53D1;&#x751F;&#x4E86;&#x62F7;&#x8D1D;&#x3002;</p>
-<h2 id="&#x6B63;&#x786E;&#x793A;&#x4F8B;"><a name="&#x6B63;&#x786E;&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x6B63;&#x786E;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6B63;&#x786E;&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x6B63;&#x786E;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6B63;&#x786E;&#x793A;&#x4F8B;</h2>
+
+func main() {
+    startTime := time.Now()
+    consumer1 := make(chan int)
+    consumer2 := make(chan int)
+    consumer3 := make(chan int)
+
+    go func() {
+
+        time.Sleep(4*time.Second)
+        close(consumer1)
+    }()
+
+    go func() {
+
+        time.Sleep(3*time.Second)
+        consumer2 &lt;- 3
+    }()
+
+    go func() {
+
+        time.Sleep(3*time.Second)
+        consumer3 &lt;- 5
+    }()
+
+    test(consumer1, consumer2,consumer3,startTime)
+}
+</code></pre><p>&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>Blocking on read...
+default go...
+</code></pre><p>&#x8FD0;&#x884C;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#xFF0C;&#x7531;&#x4E8E;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x8FD8;&#x672A;&#x5230;3s&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x76EE;&#x524D;&#x7A0B;&#x5E8F;&#x4F1A;&#x8D70;default&#x7684;case&#x3002;</p>
+<p>&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#xFF0C;&#x5C06;default&#x6CE8;&#x91CA;:&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>Blocking on read...
+ch3 case...
+</code></pre><p>&#x8FD9;&#x65F6;&#xFF0C;select&#x8BED;&#x53E5;&#x4F1A;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x76D1;&#x6D4B;&#x5230;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x7684;IO&#x64CD;&#x4F5C;&#x4E3A;&#x6B62;&#x3002;&#x8FD9;&#x91CC;&#xFF0C;&#x5148;&#x4F1A;&#x6267;&#x884C;&#x5B8C;&#x7761;&#x7720;3s&#x7684;gorountine,&#x6B64;&#x65F6;&#x4E24;&#x4E2A;channel(consumer2,consumer3)&#x90FD;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#xFF0C;&#x8FD9;&#x65F6;&#x7CFB;&#x7EDF;&#x4F1A;&#x968F;&#x673A;&#x9009;&#x62E9;&#x4E00;&#x4E2A;case&#x7EE7;&#x7EED;&#x64CD;&#x4F5C;&#x3002;</p>
+<h2 id="&#x73B0;&#x8C61;&#x603B;&#x7ED3;"><a name="&#x73B0;&#x8C61;&#x603B;&#x7ED3;" class="anchor-navigation-ex-anchor" href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x73B0;&#x8C61;&#x603B;&#x7ED3;" class="plugin-anchor" href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x73B0;&#x8C61;&#x603B;&#x7ED3;</h2>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x793A;&#x4F8B;&#xFF0C;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x5728; Go &#x8BED;&#x8A00;&#x4E2D;&#x4F7F;&#x7528; select &#x63A7;&#x5236;&#x7ED3;&#x6784;&#x65F6;&#xFF0C;&#x4F1A;&#x9047;&#x5230;&#x4E24;&#x4E2A;&#x6709;&#x8DA3;&#x7684;&#x73B0;&#x8C61;&#xFF1A;</p>
+<ul>
+<li><ol>
+<li>select &#x80FD;&#x5728; Channel &#x4E0A;&#x8FDB;&#x884C;&#x975E;&#x963B;&#x585E;&#x7684;&#x6536;&#x53D1;&#x64CD;&#x4F5C;(<strong>&#x6709;default&#x64CD;&#x4F5C;&#x65F6;</strong> &#x76F4;&#x63A5;&#x51FA;&#x53D1;default)&#xFF1B;</li>
+</ol>
+</li>
+<li><ol>
+<li>select &#x80FD;&#x5728; Channel &#x4E0A;&#x8FDB;&#x884C;&#x963B;&#x585E;&#x7684;&#x6536;&#x53D1;&#x64CD;&#x4F5C;(<strong>&#x65E0;default&#x64CD;&#x4F5C;&#x65F6;</strong> &#x963B;&#x585E;&#x7B49;&#x5F85;channel&#x6D88;&#x606F;)&#xFF1B;</li>
+</ol>
+</li>
+<li><ol>
+<li>select &#x5728;&#x9047;&#x5230;&#x591A;&#x4E2A; Channel &#x540C;&#x65F6;&#x54CD;&#x5E94;&#x65F6;&#x4F1A;&#x968F;&#x673A;&#x6311;&#x9009; case &#x6267;&#x884C;&#xFF1B;</li>
+</ol>
+</li>
+</ul>
+<h2 id="&#x793A;&#x4F8B;2"><a name="&#x793A;&#x4F8B;2" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;2" class="plugin-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;2</h2>
 <pre><code>package main
-import (
-    &quot;fmt&quot;
-)
-func main() {
-    arr := []int{1, 2, 3}
-    newArr := []*int{}
-    for i, _ := range arr {
-        newArr = append(newArr, &amp;arr[i])
-    }
-    for _, v := range newArr {
-        fmt.Println(*v)
-    }
+
+import &quot;fmt&quot;
+
+var ch1 chan int
+var ch2 chan int
+var chs = []chan int{ch1, ch2}
+var numbers = []int{1, 2, 3, 4, 5}
+
+func getNumber(i int) int {
+    fmt.Printf(&quot;numbers[%d]\n&quot;, i)
+
+    return numbers[i]
 }
-</code></pre><p><strong>&#x8F93;&#x51FA;</strong></p>
-<pre><code>1
-2
-3
-</code></pre>
+func getChan(i int) chan int {
+    fmt.Printf(&quot;chs[%d]\n&quot;, i)
+
+    return chs[i]
+}
+
+
+func main () {
+
+    select {
+    case getChan(0) &lt;- getNumber(2):
+
+        fmt.Println(&quot;1th case is selected.&quot;)
+    case getChan(1) &lt;- getNumber(3):
+
+        fmt.Println(&quot;2th case is selected.&quot;)
+    default:
+
+        fmt.Println(&quot;default!.&quot;)
+        }
+}
+</code></pre><p>&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>chs[0]
+numbers[2]
+chs[1]
+numbers[3]
+default!.
+</code></pre><p>&#x8FD0;&#x884C;&#x4E0A;&#x8FF0;&#x4F8B;&#x5B50;&#xFF0C;&#x53D1;&#x73B0;&#x8F93;&#x51FA;select &#x6328;&#x7740;&#x8F93;&#x51FA;&#x3002;&#x5E76;&#x4E14;&#x8F93;&#x51FA;&#x4E86;default&#x5BF9;&#x5E94;&#x7684;case&#x3002;</p>
+<h2 id="&#x73B0;&#x8C61;&#x603B;&#x7ED3;_1"><a name="&#x73B0;&#x8C61;&#x603B;&#x7ED3;_1" class="anchor-navigation-ex-anchor" href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;_1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x73B0;&#x8C61;&#x603B;&#x7ED3;" class="plugin-anchor" href="#&#x73B0;&#x8C61;&#x603B;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x73B0;&#x8C61;&#x603B;&#x7ED3;</h2>
+<p>&#x6240;&#x6709;channel&#x8868;&#x8FBE;&#x5F0F;&#x90FD;&#x4F1A;&#x88AB;&#x6C42;&#x503C;&#x3001;&#x6240;&#x6709;&#x88AB;&#x53D1;&#x9001;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x90FD;&#x4F1A;&#x88AB;&#x6C42;&#x503C;&#x3002;&#x6C42;&#x503C;&#x987A;&#x5E8F;&#xFF1A;&#x81EA;&#x4E0A;&#x800C;&#x4E0B;&#x3001;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x3002;</p>
+
                                 
                                 </section>
                             
@@ -499,12 +582,12 @@ func main() {
 
             
                 
-                <a href="Golang-array-slice.html" class="navigation navigation-prev " aria-label="Previous page: Golang 切片和数组">
+                <a href="Golang-channel.html" class="navigation navigation-prev " aria-label="Previous page: Golang channel">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Golang-interface.html" class="navigation navigation-next " aria-label="Next page: Golang interface">
+                <a href="Golang-parameters.html" class="navigation navigation-next " aria-label="Next page: Golang 不定参数">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -515,7 +598,7 @@ func main() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Golang range的坑","level":"1.3.9","depth":2,"next":{"title":"Golang interface","level":"1.3.10","depth":2,"path":"basis/Golang-interface.md","ref":"basis/Golang-interface.md","articles":[]},"previous":{"title":"Golang 切片和数组","level":"1.3.8","depth":2,"path":"basis/Golang-array-slice.md","ref":"basis/Golang-array-slice.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-range.md","mtime":"2020-04-14T11:04:55.600Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T11:09:05.987Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Golang select","level":"1.3.4","depth":2,"next":{"title":"Golang 不定参数","level":"1.3.5","depth":2,"path":"basis/Golang-parameters.md","ref":"basis/Golang-parameters.md","articles":[]},"previous":{"title":"Golang channel","level":"1.3.3","depth":2,"path":"basis/Golang-channel.md","ref":"basis/Golang-channel.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-select.md","mtime":"2020-04-14T11:08:12.820Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T11:09:05.987Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
