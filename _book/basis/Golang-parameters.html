@@ -1,0 +1,584 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Golang 不定参数 · Golang 学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Frederick hou">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Golang-exception.html" />
+    
+    
+    <link rel="prev" href="Golang-channel.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.frederickhou.com" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../introduce.html">
+            
+                <a href="../introduce.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Golang 基础篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="Golang-goroutine.html">
+            
+                <a href="Golang-goroutine.html">
+            
+                    
+                    Golang goroutine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Golang_memory_manager.html">
+            
+                <a href="Golang_memory_manager.html">
+            
+                    
+                    Golang 内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Golang-channel.html">
+            
+                <a href="Golang-channel.html">
+            
+                    
+                    Golang channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.4" data-path="Golang-parameters.html">
+            
+                <a href="Golang-parameters.html">
+            
+                    
+                    Golang 不定参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="Golang-exception.html">
+            
+                <a href="Golang-exception.html">
+            
+                    
+                    Golang 异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="Golang-closure.html">
+            
+                <a href="Golang-closure.html">
+            
+                    
+                    Golang 闭包函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="Golang-array-slice.html">
+            
+                <a href="Golang-array-slice.html">
+            
+                    
+                    Golang 切片和数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="Golang-range.html">
+            
+                <a href="Golang-range.html">
+            
+                    
+                    Golang range的坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="Golang-interface.html">
+            
+                <a href="Golang-interface.html">
+            
+                    
+                    Golang interface
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="Golang-factory-model.html">
+            
+                <a href="Golang-factory-model.html">
+            
+                    
+                    Golang 工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../heketi/">
+            
+                <a href="../heketi/">
+            
+                    
+                    第三方开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../heketi/heketi_deploy_introduce.html">
+            
+                <a href="../heketi/heketi_deploy_introduce.html">
+            
+                    
+                    Heketi开发介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../heketi/heketi_deploy.html">
+            
+                <a href="../heketi/heketi_deploy.html">
+            
+                    
+                    Heketi调用封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../k8s/Golang-client-go-analysis.html">
+            
+                <a href="../k8s/Golang-client-go-analysis.html">
+            
+                    
+                    kubernetes client-go 源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Golang 不定参数</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x4E0D;&#x5B9A;&#x53C2;"><b></b>&#x4E0D;&#x5B9A;&#x53C2;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;"><b></b>&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;</a></li><li><span class="title-icon "></span><a href="#&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;"><b></b>&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;</a></li></ul></ul></div><a href="#&#x4E0D;&#x5B9A;&#x53C2;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x4E0D;&#x5B9A;&#x53C2;"><a name="&#x4E0D;&#x5B9A;&#x53C2;" class="anchor-navigation-ex-anchor" href="#&#x4E0D;&#x5B9A;&#x53C2;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E0D;&#x5B9A;&#x53C2;" class="plugin-anchor" href="#&#x4E0D;&#x5B9A;&#x53C2;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0D;&#x5B9A;&#x53C2;</h1>
+<p>&#x53EF;&#x4EE5;&#x628A;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x5207;&#x7247;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x7EC4;&#x7EC7;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x5207;&#x7247;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x4F20;&#x7ED9;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;,&#x800C;&#x4E14;&#x53EA;&#x80FD;&#x653E;&#x5728;&#x53C2;&#x6570;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x9762;&#x3002;
+&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x6807;&#x5FD7;&#xFF1A;<strong>&#x201C;...&#x201D;</strong>&#x3002;</p>
+<h2 id="&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;"><a name="&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;" class="plugin-anchor" href="#&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;</h2>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+
+//&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x51FD;&#x6570;
+func Add(a int, args ...int) (result int) {
+    result += a
+    for _, arg := range args {
+        result += arg
+    }
+    return
+}
+
+func main() {
+    fmt.Println(Add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    // &#x6216;&#x8005;
+    argsList := []int{2, 3, 4, 5, 6, 7, 8, 9, 10}
+    fmt.Println(Add(1,argsList...))
+}
+</code></pre><h2 id="&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;"><a name="&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;" class="plugin-anchor" href="#&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;</h2>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+/*
+&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#xFF0C;&#x7528;interface{}&#x8868;&#x793A;
+*/
+func MyPrintf(args ...interface{}) {
+    for _, arg := range args { //&#x8FED;&#x4EE3;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;
+        switch arg.(type) {
+        case int:
+            fmt.Println(arg, &quot;is int&quot;)
+        case string:
+            fmt.Println(arg, &quot;is string&quot;)
+        case float64:
+            fmt.Println(arg, &quot;is float64&quot;)
+        case bool:
+            fmt.Println(arg, &quot; is bool&quot;)
+        default:
+            fmt.Println(&quot;Unknow&quot;)
+        }
+    }
+}
+
+func main() {
+    MyPrintf(1, &quot;test&quot;, 1.5, false, -1.5)
+}
+</code></pre><p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>1 is int
+test is string
+1.5 is float64
+false  is bool
+-1.5 is float64
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Golang-channel.html" class="navigation navigation-prev " aria-label="Previous page: Golang channel">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Golang-exception.html" class="navigation navigation-next " aria-label="Next page: Golang 异常处理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Golang 不定参数","level":"1.3.4","depth":2,"next":{"title":"Golang 异常处理","level":"1.3.5","depth":2,"path":"basis/Golang-exception.md","ref":"basis/Golang-exception.md","articles":[]},"previous":{"title":"Golang channel","level":"1.3.3","depth":2,"path":"basis/Golang-channel.md","ref":"basis/Golang-channel.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-parameters.md","mtime":"2020-04-14T08:07:12.188Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T10:04:07.490Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
