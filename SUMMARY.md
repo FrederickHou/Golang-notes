@@ -10,6 +10,7 @@
     * [Golang 异常处理](basis/Golang-exception.md)
     * [Golang 闭包函数](basis/Golang-closure.md)
     * [Golang 切片和数组](basis/Golang-array-slice.md)
+    * [Golang range的坑](basis/Golang-range.md)
     * [Golang interface](basis/Golang-interface.md)
     * [Golang 工厂模式](basis/Golang-factory-model.md)
 * [第三方开发](heketi/README.md)
