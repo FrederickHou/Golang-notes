@@ -1,0 +1,693 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Golang 异常处理 · Golang 学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Frederick hou">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Golang-closure.html" />
+    
+    
+    <link rel="prev" href="Golang-parameters.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.frederickhou.com" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../introduce.html">
+            
+                <a href="../introduce.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Golang 基础篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="Golang-goroutine.html">
+            
+                <a href="Golang-goroutine.html">
+            
+                    
+                    Golang goroutine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Golang_memory_manager.html">
+            
+                <a href="Golang_memory_manager.html">
+            
+                    
+                    Golang 内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Golang-channel.html">
+            
+                <a href="Golang-channel.html">
+            
+                    
+                    Golang channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="Golang-select.html">
+            
+                <a href="Golang-select.html">
+            
+                    
+                    Golang select
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="Golang-parameters.html">
+            
+                <a href="Golang-parameters.html">
+            
+                    
+                    Golang 不定参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.6" data-path="Golang-exception.html">
+            
+                <a href="Golang-exception.html">
+            
+                    
+                    Golang 异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="Golang-closure.html">
+            
+                <a href="Golang-closure.html">
+            
+                    
+                    Golang 闭包函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="Golang-array-slice.html">
+            
+                <a href="Golang-array-slice.html">
+            
+                    
+                    Golang 切片和数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="Golang-range.html">
+            
+                <a href="Golang-range.html">
+            
+                    
+                    Golang range的坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="Golang-interface.html">
+            
+                <a href="Golang-interface.html">
+            
+                    
+                    Golang interface
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="Golang-factory-model.html">
+            
+                <a href="Golang-factory-model.html">
+            
+                    
+                    Golang 工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../heketi/">
+            
+                <a href="../heketi/">
+            
+                    
+                    第三方开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../heketi/heketi_deploy_introduce.html">
+            
+                <a href="../heketi/heketi_deploy_introduce.html">
+            
+                    
+                    Heketi开发介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../heketi/heketi_deploy.html">
+            
+                <a href="../heketi/heketi_deploy.html">
+            
+                    
+                    Heketi调用封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../k8s/Golang-client-go-analysis.html">
+            
+                <a href="../k8s/Golang-client-go-analysis.html">
+            
+                    
+                    kubernetes client-go 源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Golang 异常处理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#golang-&#x5F02;&#x5E38;&#x5904;&#x7406;"><b></b>Golang &#x5F02;&#x5E38;&#x5904;&#x7406;</a></li><ul><li><span class="title-icon "></span><a href="#&#x7B80;&#x4ECB;"><b></b>&#x7B80;&#x4ECB;</a></li><li><span class="title-icon "></span><a href="#defer&#x51FD;&#x6570;"><b></b>defer&#x51FD;&#x6570;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4ECB;&#x7ECD;"><b></b>&#x4ECB;&#x7ECD;</a></li><li><span class="title-icon "></span><a href="#defer&#x51FD;&#x6570;&#x793A;&#x4F8B;"><b></b>defer&#x51FD;&#x6570;&#x793A;&#x4F8B;</a></li><li><span class="title-icon "></span><a href="#defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;"><b></b>defer &#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;</a></li><li><span class="title-icon "></span><a href="#&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;"><b></b>&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;</a></li><li><span class="title-icon "></span><a href="#&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;"><b></b>&#x8C03;&#x7528;os.Exit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;</a></li></ul><li><span class="title-icon "></span><a href="#panic&#x548C;recover&#x51FD;&#x6570;"><b></b>panic()&#x548C;recover()&#x51FD;&#x6570;</a></li><ul><li><span class="title-icon "></span><a href="#panic&#x51FD;&#x6570;"><b></b>panic()&#x51FD;&#x6570;</a></li><li><span class="title-icon "></span><a href="#recover&#x51FD;&#x6570;"><b></b>recover()&#x51FD;&#x6570;</a></li></ul></ul></ul></div><a href="#golang-&#x5F02;&#x5E38;&#x5904;&#x7406;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="golang-&#x5F02;&#x5E38;&#x5904;&#x7406;"><a name="golang-&#x5F02;&#x5E38;&#x5904;&#x7406;" class="anchor-navigation-ex-anchor" href="#golang-&#x5F02;&#x5E38;&#x5904;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="golang-&#x5F02;&#x5E38;&#x5904;&#x7406;" class="plugin-anchor" href="#golang-&#x5F02;&#x5E38;&#x5904;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>Golang &#x5F02;&#x5E38;&#x5904;&#x7406;</h1>
+<h2 id="&#x7B80;&#x4ECB;"><a name="&#x7B80;&#x4ECB;" class="anchor-navigation-ex-anchor" href="#&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7B80;&#x4ECB;" class="plugin-anchor" href="#&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7B80;&#x4ECB;</h2>
+<p>Go&#x8BED;&#x8A00;&#x8FFD;&#x6C42;&#x7B80;&#x6D01;&#x4F18;&#x96C5;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;Go&#x8BED;&#x8A00;&#x4E0D;&#x652F;&#x6301;&#x4F20;&#x7EDF;&#x7684; try&#x2026;catch&#x2026;finally &#x8FD9;&#x79CD;&#x5F02;&#x5E38;&#xFF0C;&#x56E0;&#x4E3A;Go&#x8BED;&#x8A00;&#x7684;&#x8BBE;&#x8BA1;&#x8005;&#x4EEC;&#x8BA4;&#x4E3A;&#xFF0C;&#x5C06;&#x5F02;&#x5E38;&#x4E0E;&#x63A7;&#x5236;&#x7ED3;&#x6784;&#x6DF7;&#x5728;&#x4E00;&#x8D77;&#x4F1A;&#x5F88;&#x5BB9;&#x6613;&#x4F7F;&#x5F97;&#x4EE3;&#x7801;&#x53D8;&#x5F97;&#x6DF7;&#x4E71;&#x3002;&#x56E0;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x5F88;&#x5BB9;&#x6613;&#x6EE5;&#x7528;&#x5F02;&#x5E38;&#xFF0C;&#x751A;&#x81F3;&#x4E00;&#x4E2A;&#x5C0F;&#x5C0F;&#x7684;&#x9519;&#x8BEF;&#x90FD;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x3002;&#x5728;Go&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x591A;&#x503C;&#x8FD4;&#x56DE;&#x6765;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;&#x3002;&#x4E0D;&#x8981;&#x7528;&#x5F02;&#x5E38;&#x4EE3;&#x66FF;&#x9519;&#x8BEF;&#xFF0C;&#x66F4;&#x4E0D;&#x8981;&#x7528;&#x6765;&#x63A7;&#x5236;&#x6D41;&#x7A0B;&#x3002;&#x5728;&#x6781;&#x4E2A;&#x522B;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x9047;&#x5230;&#x771F;&#x6B63;&#x7684;&#x5F02;&#x5E38;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF08;&#x6BD4;&#x5982;&#x9664;&#x6570;&#x4E3A;0&#x4E86;&#xFF09;&#x3002;&#x624D;&#x4F7F;&#x7528;Go&#x4E2D;&#x5F15;&#x5165;&#x7684;Exception&#x5904;&#x7406;&#xFF1A;defer, panic, recover&#x3002;</p>
+<h2 id="defer&#x51FD;&#x6570;"><a name="defer&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#defer&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="defer&#x51FD;&#x6570;" class="plugin-anchor" href="#defer&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>defer&#x51FD;&#x6570;</h2>
+<h3 id="&#x4ECB;&#x7ECD;"><a name="&#x4ECB;&#x7ECD;" class="anchor-navigation-ex-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4ECB;&#x7ECD;" class="plugin-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ECB;&#x7ECD;</h3>
+<p>defer&#x8BED;&#x53E5;&#x662F;Go&#x4E2D;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x6709;&#x7528;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5EF6;&#x8FDF;&#x5230;&#x5305;&#x88F9;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x65F6;&#x6267;&#x884C;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;defer&#x8BED;&#x53E5;&#x53EF;&#x4EE5;&#x5145;&#x5F53;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D;try&#x2026;catch&#x2026;&#x7684;&#x89D2;&#x8272;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5904;&#x7406;&#x5173;&#x95ED;&#x6587;&#x4EF6;&#x53E5;&#x67C4;&#x7B49;&#x6536;&#x5C3E;&#x64CD;&#x4F5C;&#x3002;</p>
+<p> <strong>&#x6709;&#x4EE5;&#x4E0B;&#x7279;&#x70B9;&#xFF1A;</strong></p>
+<ul>
+<li><p><strong>1.</strong> defer&#x5728;&#x58F0;&#x660E;&#x65F6;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x63A8;&#x8FDF;&#x6267;&#x884C;&#xFF0C;&#x5728;return&#x6267;&#x884C;&#x524D;&#xFF0C;<strong>&#x5012;&#x5E8F;&#x6267;&#x884C;defer[&#x5148;&#x8FDB;&#x540E;&#x51FA;]</strong>&#xFF0C;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x6E05;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#xFF0C;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7B49;&#x3002;</p>
+</li>
+<li><p><strong>2.</strong> defer&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x6027;&#xFF1A;<strong>&#x5373;&#x4F7F;&#x51FD;&#x6570;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;defer&#x4ECD;&#x4F1A;&#x88AB;&#x6267;&#x884C;</strong>&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x7A0B;&#x5E8F;&#x9519;&#x8BEF;&#x5BFC;&#x81F4;&#x8D44;&#x6E90;&#x4E0D;&#x88AB;&#x91CA;&#x653E;&#xFF0C;&#x6216;&#x8005;&#x56E0;&#x4E3A;&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x7684;&#x5F02;&#x5E38;&#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x5D29;&#x6E83;&#x3002;</p>
+</li>
+</ul>
+<h3 id="defer&#x51FD;&#x6570;&#x793A;&#x4F8B;"><a name="defer&#x51FD;&#x6570;&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#defer&#x51FD;&#x6570;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="defer&#x51FD;&#x6570;&#x793A;&#x4F8B;" class="plugin-anchor" href="#defer&#x51FD;&#x6570;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>defer&#x51FD;&#x6570;&#x793A;&#x4F8B;</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func stackingDefers() {
+    defer func() {
+        fmt.Println(&quot;1&quot;)
+    }()
+    defer func() {
+        fmt.Println(&quot;2&quot;)
+    }()
+    defer func() {
+        fmt.Println(&quot;3&quot;)
+    }()
+}
+func main() {
+    stackingDefers()
+}
+</code></pre><p><strong>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code>3
+2
+1
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong>
+&#x6839;&#x636E;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x53D1;&#x73B0;&#xFF1A;&#x5F53;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x6709;&#x591A;&#x4E2A;defer&#x65F6;&#xFF0C; defer&#x4F1A;&#x5C06;&#x8981;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#x7684;&#x65B9;&#x6CD5;&#x201C;&#x538B;&#x6808;&#x201D;&#xFF0C;&#x5F53;defer&#x88AB;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5C06;&#x6240;&#x6709;&#x201C;&#x538B;&#x6808;&#x201D;&#x7684;&#x65B9;&#x6CD5;&#x201C;&#x51FA;&#x6808;&#x201D;&#x5E76;&#x6267;&#x884C;&#x3002;&#x6240;&#x4EE5;defer&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x662F;LIFO&#x7684;&#x3002;</p>
+<h3 id="defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;"><a name="defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;" class="anchor-navigation-ex-anchor" href="#defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;" class="plugin-anchor" href="#defer-&#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;"><i class="fa fa-link" aria-hidden="true"></i></a>defer &#x5728;&#x533F;&#x540D;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5751;</h3>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func returnValues() int {
+    var result int
+    defer func() {
+        result++
+        fmt.Println(&quot;defer&quot;)
+    }()
+    return result
+}
+
+func namedReturnValues() (result int) {
+    defer func() {
+        result++
+        fmt.Println(&quot;defer&quot;)
+    }()
+    return result
+}
+
+func main() {
+    fmt.Println(returnValues())
+    fmt.Println(namedReturnValues())
+}
+</code></pre><p><strong>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code>defer
+0
+defer
+1
+</code></pre><p><strong>&#x6CE8;&#x91CA;</strong>&#xFF1A;
+&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x770B;&#x5230;&#x8F93;&#x51FA;0&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x8F93;&#x51FA;1&#x3002;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x4E86;&#x533F;&#x540D;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4F7F;&#x7528;&#x4E86;&#x547D;&#x540D;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x5176;&#x4ED6;&#x7684;&#x903B;&#x8F91;&#x5747;&#x76F8;&#x540C;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8F93;&#x51FA;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x6709;&#x533A;&#x522B;&#x5462;&#xFF1F;</p>
+<p>&#x8981;&#x641E;&#x6E05;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x9996;&#x5148;&#x9700;&#x8981;&#x4E86;&#x89E3;defer&#x7684;&#x6267;&#x884C;&#x903B;&#x8F91;&#xFF0C;&#x6587;&#x6863;&#x4E2D;&#x8BF4;defer&#x8BED;&#x53E5;&#x5728;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x201C;&#x65F6;&#x201D;&#x89E6;&#x53D1;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;return&#x548C;defer&#x662F;&#x201C;&#x540C;&#x65F6;&#x201D;&#x6267;&#x884C;&#x7684;&#x3002;&#x4EE5;&#x533F;&#x540D;&#x8FD4;&#x56DE;&#x503C;&#x65B9;&#x6CD5;&#x4E3E;&#x4F8B;&#xFF0C;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;&#x3002;</p>
+<p>&#x5C06;result&#x8D4B;&#x503C;&#x7ED9;&#x8FD4;&#x56DE;&#x503C;&#xFF08;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x6210;Go&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x503C;retValue&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x6267;&#x884C;retValue = result&#xFF09;
+&#x7136;&#x540E;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6709;defer&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5219;&#x6267;&#x884C;
+&#x8FD4;&#x56DE;&#x521A;&#x624D;&#x521B;&#x5EFA;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF08;retValue&#xFF09;
+&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;defer&#x4E2D;&#x7684;&#x4FEE;&#x6539;&#x662F;&#x5BF9;result&#x6267;&#x884C;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;retValue&#xFF0C;&#x6240;&#x4EE5;defer&#x8FD4;&#x56DE;&#x7684;&#x4F9D;&#x7136;&#x662F;retValue&#x3002;&#x5728;&#x547D;&#x540D;&#x8FD4;&#x56DE;&#x503C;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x8FD4;&#x56DE;&#x503C;&#x5728;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x65F6;&#x5DF2;&#x7ECF;&#x88AB;&#x5B9A;&#x4E49;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x521B;&#x5EFA;retValue&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;result&#x5C31;&#x662F;retValue&#xFF0C;defer&#x5BF9;&#x4E8E;result&#x7684;&#x4FEE;&#x6539;&#x4E5F;&#x4F1A;&#x88AB;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x3002;</p>
+<h3 id="&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;"><a name="&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;" class="anchor-navigation-ex-anchor" href="#&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;" class="plugin-anchor" href="#&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5224;&#x65AD;&#x6267;&#x884C;&#x6CA1;&#x6709;err&#x4E4B;&#x540E;&#xFF0C;&#x518D;defer&#x91CA;&#x653E;&#x8D44;&#x6E90;</h3>
+<pre><code>resp, err := http.Get(url)
+// &#x5148;&#x5224;&#x65AD;&#x64CD;&#x4F5C;&#x662F;&#x5426;&#x6210;&#x529F;
+if err != nil {
+    return err
+}
+// &#x5982;&#x679C;&#x64CD;&#x4F5C;&#x6210;&#x529F;&#xFF0C;&#x518D;&#x8FDB;&#x884C;Close&#x64CD;&#x4F5C;
+defer resp.Body.Close()
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong></p>
+<p>&#x4E00;&#x4E9B;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#x7684;&#x64CD;&#x4F5C;&#x53EF;&#x80FD;&#x4F1A;&#x8FD4;&#x56DE;err&#x53C2;&#x6570;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5FFD;&#x7565;&#x8FD4;&#x56DE;&#x7684;err&#x53C2;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;defer&#x8FDB;&#x884C;&#x5EF6;&#x8FDF;&#x91CA;&#x653E;&#x7684;&#x7684;&#x8BDD;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x4F7F;&#x7528;defer&#x4E4B;&#x524D;&#x5148;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5B58;&#x5728;err&#xFF0C;&#x5982;&#x679C;&#x8D44;&#x6E90;&#x6CA1;&#x6709;&#x83B7;&#x53D6;&#x6210;&#x529F;&#xFF0C;&#x5373;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x4E5F;&#x4E0D;&#x5E94;&#x8BE5;&#x518D;&#x5BF9;&#x8D44;&#x6E90;&#x6267;&#x884C;&#x91CA;&#x653E;&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x5224;&#x65AD;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#x662F;&#x5426;&#x6210;&#x529F;&#x5C31;&#x6267;&#x884C;&#x91CA;&#x653E;&#x64CD;&#x4F5C;&#x7684;&#x8BDD;&#xFF0C;&#x8FD8;&#x6709;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x91CA;&#x653E;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x9519;&#x8BEF;&#x3002;</p>
+<h3 id="&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;"><a name="&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;" class="anchor-navigation-ex-anchor" href="#&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;" class="plugin-anchor" href="#&#x8C03;&#x7528;osexit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8C03;&#x7528;os.Exit&#x65F6;defer&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;</h3>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;)
+
+func deferExit() {
+    defer func() {
+        fmt.Println(&quot;defer&quot;)
+    }()
+    fmt.Println(&quot;exit&quot;)
+    os.Exit(0)
+}
+
+func main() {
+    deferExit()
+}
+</code></pre><p><strong>&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#xFF1A;</strong></p>
+<pre><code>exit
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong>
+&#x5F53;&#x53D1;&#x751F;panic&#x65F6;&#xFF0C;&#x6240;&#x5728;goroutine&#x7684;&#x6240;&#x6709;defer&#x4F1A;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x8C03;&#x7528;os.Exit()&#x65B9;&#x6CD5;&#x9000;&#x51FA;&#x7A0B;&#x5E8F;&#x65F6;&#xFF0C;defer&#x5E76;&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;&#x3002;</p>
+<h2 id="panic&#x548C;recover&#x51FD;&#x6570;"><a name="panic&#x548C;recover&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#panic&#x548C;recover&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="panic&#x548C;recover&#x51FD;&#x6570;" class="plugin-anchor" href="#panic&#x548C;recover&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>panic()&#x548C;recover()&#x51FD;&#x6570;</h2>
+<p>Golang &#x8BED;&#x8A00;&#x5185;&#x7F6E;&#x51FD;&#x6570;panic()&#x548C;recover()&#x6765;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x9519;&#x8BEF;&#x3002;</p>
+<pre><code>func recover() interface{}
+func panic(interface{})
+</code></pre><h3 id="panic&#x51FD;&#x6570;"><a name="panic&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#panic&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="panic&#x51FD;&#x6570;" class="plugin-anchor" href="#panic&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>panic()&#x51FD;&#x6570;</h3>
+<p>&#x5F53;&#x51FD;&#x6570;&#x6267;&#x884C;&#x89E6;&#x53D1;&#x4E86;panic()&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x5230;defer&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x51FD;&#x6570;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x4F1A;&#x88AB;&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#xFF1B;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;defer&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5219;&#x4F1A;&#x9010;&#x5C42;&#x6267;&#x884C;defer&#x8BED;&#x53E5;&#xFF0C;&#x76F4;&#x5230;&#x6240;&#x6709;&#x7684;&#x51FD;&#x6570;&#x88AB;&#x7EC8;&#x6B62;&#x3002;</p>
+<p>&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC;panic&#x51FD;&#x6570;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5C06;&#x4F1A;&#x88AB;&#x62A5;&#x544A;&#x51FA;&#x6765;&#x3002;</p>
+<pre><code>package main
+
+
+func raiseErr(err interface{}){
+    panic(err)
+}
+
+func main() {
+    raiseErr(&quot;Unknow err&quot;)
+}
+</code></pre><p><strong>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code>panic: Unknow err
+
+goroutine 1 [running]:
+main.raiseErr(...)
+        E:/coding/go/test/test.go:5
+main.main()
+        E:/coding/go/test/test.go:9 +0x40
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong></p>
+<p>&#x4EE5;&#x4E0A;&#x7A0B;&#x5E8F;&#x76F4;&#x63A5;&#x7EC8;&#x6B62;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;&#x3001;&#x76F8;&#x5F53;&#x4E8E;C++/Python&#x91CC;&#x9762;&#x7684;&#x5F02;&#x5E38;&#x629B;&#x51FA;&#xFF0C;&#x5982;&#x679C;&#x5916;&#x56F4;&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x63A5;&#x4F4F;&#x5F02;&#x5E38;&#xFF0C;&#x4FBF;&#x4F7F;&#x5F97;&#x7A0B;&#x5E8F;&#x7EC8;&#x6B62;&#x9000;&#x51FA;&#x3002;</p>
+<h3 id="recover&#x51FD;&#x6570;"><a name="recover&#x51FD;&#x6570;" class="anchor-navigation-ex-anchor" href="#recover&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="recover&#x51FD;&#x6570;" class="plugin-anchor" href="#recover&#x51FD;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>recover()&#x51FD;&#x6570;</h3>
+<p>recover()&#x51FD;&#x6570;&#x7528;&#x4E8E;&#x7EC8;&#x6B62;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x3002;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x5728;defer&#x5173;&#x952E;&#x5B57;&#x540E;&#x4EE5;&#x6709;&#x6548;&#x622A;&#x53D6;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5728;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x7684;goroutine&#x4E2D;&#x660E;&#x786E;&#x8C03;&#x7528;&#x6062;&#x590D;&#x8FC7;&#x7A0B;&#xFF08;&#x4F7F;&#x7528;recover&#x5173;&#x952E;&#x5B57;&#xFF09; &#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;goroutine&#x6240;&#x5C5E;&#x7684;&#x8FDB;&#x7A0B;&#x6253;&#x5370;&#x5F02;&#x5E38;&#x4FE1;&#x606F;&#x540E;&#x76F4;&#x63A5;&#x9000;&#x51FA;&#x3002;</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+
+func raiseErr(err interface{}){
+    panic(err)
+}
+
+func main() {
+    defer func() {
+        if r := recover(); r != nil {
+            fmt.Printf(&quot;Exception error caught: %v\n&quot;, r)
+        }
+    }()
+    raiseErr(&quot;Unknow err&quot;)
+}
+</code></pre><p><strong>&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#xFF1A;</strong></p>
+<pre><code>Exception error caught: Unknow err
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong></p>
+<p>raiseErr(&quot;Unknow err&quot;))&#x4E2D;&#x89E6;&#x53D1;&#x4E86;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF0C;&#x8BE5;&#x533F;&#x540D;defer&#x51FD;&#x6570;&#x90FD;&#x5C06;&#x5728;&#x51FD;&#x6570;&#x9000;&#x51FA;&#x65F6;&#x5F97;&#x5230;&#x6267;&#x884C;&#x3002; recover()&#x51FD;&#x6570;&#x6267;&#x884C;&#x5C06;&#x4F7F;&#x5F97;&#x8BE5;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x7EC8;&#x6B62;&#x3002;&#x6B64;&#x65F6;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x88AB;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x7A0B;&#x5E8F;&#x4F20;&#x7ED9;panic&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x4E3A;nil&#xFF0C;&#x5219;&#x8BE5;&#x51FD;&#x6570;&#x8FD8;&#x4F1A;&#x6253;&#x5370;&#x8BE6;&#x7EC6;&#x7684;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Golang-parameters.html" class="navigation navigation-prev " aria-label="Previous page: Golang 不定参数">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Golang-closure.html" class="navigation navigation-next " aria-label="Next page: Golang 闭包函数">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Golang 异常处理","level":"1.3.6","depth":2,"next":{"title":"Golang 闭包函数","level":"1.3.7","depth":2,"path":"basis/Golang-closure.md","ref":"basis/Golang-closure.md","articles":[]},"previous":{"title":"Golang 不定参数","level":"1.3.5","depth":2,"path":"basis/Golang-parameters.md","ref":"basis/Golang-parameters.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-exception.md","mtime":"2020-04-14T08:07:12.178Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T10:07:10.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

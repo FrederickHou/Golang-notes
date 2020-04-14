@@ -1,0 +1,670 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Golang 切片和数组 · Golang 学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Frederick hou">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Golang-range.html" />
+    
+    
+    <link rel="prev" href="Golang-closure.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../https:/github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.frederickhou.com" target="_blank" class="custom-link">我的博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../introduce.html">
+            
+                <a href="../introduce.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Golang 基础篇
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="Golang-goroutine.html">
+            
+                <a href="Golang-goroutine.html">
+            
+                    
+                    Golang goroutine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Golang_memory_manager.html">
+            
+                <a href="Golang_memory_manager.html">
+            
+                    
+                    Golang 内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="Golang-channel.html">
+            
+                <a href="Golang-channel.html">
+            
+                    
+                    Golang channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="Golang-select.html">
+            
+                <a href="Golang-select.html">
+            
+                    
+                    Golang select
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="Golang-parameters.html">
+            
+                <a href="Golang-parameters.html">
+            
+                    
+                    Golang 不定参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="Golang-exception.html">
+            
+                <a href="Golang-exception.html">
+            
+                    
+                    Golang 异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="Golang-closure.html">
+            
+                <a href="Golang-closure.html">
+            
+                    
+                    Golang 闭包函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.8" data-path="Golang-array-slice.html">
+            
+                <a href="Golang-array-slice.html">
+            
+                    
+                    Golang 切片和数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="Golang-range.html">
+            
+                <a href="Golang-range.html">
+            
+                    
+                    Golang range的坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="Golang-interface.html">
+            
+                <a href="Golang-interface.html">
+            
+                    
+                    Golang interface
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="Golang-factory-model.html">
+            
+                <a href="Golang-factory-model.html">
+            
+                    
+                    Golang 工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../heketi/">
+            
+                <a href="../heketi/">
+            
+                    
+                    第三方开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../heketi/heketi_deploy_introduce.html">
+            
+                <a href="../heketi/heketi_deploy_introduce.html">
+            
+                    
+                    Heketi开发介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../heketi/heketi_deploy.html">
+            
+                <a href="../heketi/heketi_deploy.html">
+            
+                    
+                    Heketi调用封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../k8s/Golang-client-go-analysis.html">
+            
+                <a href="../k8s/Golang-client-go-analysis.html">
+            
+                    
+                    kubernetes client-go 源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Golang 切片和数组</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;"><b></b>Golang &#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;</a></li><ul><li><span class="title-icon "></span><a href="#&#x6570;&#x7EC4;"><b></b>&#x6570;&#x7EC4;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4ECB;&#x7ECD;"><b></b>&#x4ECB;&#x7ECD;</a></li><li><span class="title-icon "></span><a href="#&#x601D;&#x8003;"><b></b>&#x601D;&#x8003;</a></li></ul><li><span class="title-icon "></span><a href="#&#x5207;&#x7247;"><b></b>&#x5207;&#x7247;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4ECB;&#x7ECD;_1"><b></b>&#x4ECB;&#x7ECD;</a></li><li><span class="title-icon "></span><a href="#&#x5B9A;&#x4E49;&#x5207;&#x7247;"><b></b>&#x5B9A;&#x4E49;&#x5207;&#x7247;</a></li></ul><li><span class="title-icon "></span><a href="#&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;"><b></b>&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;</a></li></ul></ul></div><a href="#golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;"><a name="golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;" class="anchor-navigation-ex-anchor" href="#golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;" class="plugin-anchor" href="#golang-&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a>Golang &#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;</h1>
+<h2 id="&#x6570;&#x7EC4;"><a name="&#x6570;&#x7EC4;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x7EC4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6570;&#x7EC4;" class="plugin-anchor" href="#&#x6570;&#x7EC4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x7EC4;</h2>
+<h3 id="&#x4ECB;&#x7ECD;"><a name="&#x4ECB;&#x7ECD;" class="anchor-navigation-ex-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4ECB;&#x7ECD;" class="plugin-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ECB;&#x7ECD;</h3>
+<p>&#x5728;Go&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x6570;&#x7EC4;&#x662F;&#x4E00;&#x79CD;&#x5177;&#x6709;<strong>&#x76F8;&#x540C;&#x7C7B;&#x578B;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;</strong>&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5148;&#x6765;&#x770B;&#x770B;&#x6570;&#x7EC4;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x6570;&#x7EC4;&#x7C7B;&#x578B;&#x58F0;&#x660E;&#x65F6;&#x7684;&#x65B9;&#x5F0F;&#x662F; []T ,&#x524D;&#x9762;&#x7684;[]&#x6307;&#x5B9A;&#x6570;&#x7EC4;&#x7684;&#x5927;&#x5C0F;&#xFF0C;T&#x6307;&#x5B9A;&#x6570;&#x7EC4;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x4E0B;&#x6211;&#x4EEC;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E0B;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x7684;&#x5927;&#x5C0F;&#x662F;3&#xFF0C;&#x5728;&#x6CA1;&#x6307;&#x5B9A;&#x6570;&#x7EC4;&#x521D;&#x59CB;&#x503C;&#x65F6;&#x6570;&#x7EC4;&#x9ED8;&#x8BA4;&#x521D;&#x59CB;&#x503C;&#x662F;{0&#xFF0C;0&#xFF0C;0}</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+func main() {
+    array1 := [3]int{}
+    //&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x7ED9;&#x6570;&#x7EC4;&#x8D4B;&#x503C;
+    array1[0] = 1
+    array1[1] = 2
+    array1[2] = 3
+    fmt.Println(array1)
+    //&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x4E5F;&#x662F;&#x6570;&#x7EC4;&#x58F0;&#x660E;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;&#x4E14;&#x521D;&#x59CB;&#x5316;&#x6570;&#x7EC4;&#x7684;&#x503C;&#x4E3A;{1,2}
+    array2 := [2]int {1,2}
+    fmt.Println(array2)
+}
+</code></pre><p><strong>&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#xFF1A;</strong></p>
+<pre><code>[1 2 3]
+[1 2]
+</code></pre><h3 id="&#x601D;&#x8003;"><a name="&#x601D;&#x8003;" class="anchor-navigation-ex-anchor" href="#&#x601D;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x601D;&#x8003;" class="plugin-anchor" href="#&#x601D;&#x8003;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x601D;&#x8003;</h3>
+<h4 id="&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;"><a name="&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;" class="plugin-anchor" href="#&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x7EC4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5417;&#xFF1F;**</h4>
+<p>&#x7B54;&#x6848;&#xFF1A;&#x53EF;&#x4EE5;&#xFF0C;&#x4E5F;&#x4E0D;&#x53EF;&#x4EE5;(&#x5206;&#x60C5;&#x51B5;)&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x8FDB;&#x884C;</p>
+<p><strong>1.&#x793A;&#x4F8B;&#xFF1A;</strong></p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+func main() {
+    array1 := [3]int{1,2,3}
+    //&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x7ED9;&#x6570;&#x7EC4;&#x8D4B;&#x503C;
+    fmt.Println(array1)
+    //&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x4E5F;&#x662F;&#x6570;&#x7EC4;&#x58F0;&#x660E;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;&#x4E14;&#x521D;&#x59CB;&#x5316;&#x6570;&#x7EC4;&#x7684;&#x503C;&#x4E3A;{1,2}
+    array2 := [3]int {1,2,4}
+    fmt.Println(array2)
+
+    if array1 == array2{
+        fmt.Println(&quot;true&quot;)
+    }else{
+        fmt.Println(&quot;false&quot;)
+    }
+}
+</code></pre><p><strong>&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#xFF1A;</strong></p>
+<pre><code>false
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong>
+&#x6CA1;&#x6709;&#x62A5;&#x9519;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;</p>
+<p><strong>2.&#x793A;&#x4F8B;&#xFF1A;</strong></p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+func main() {
+    array1 := [3]int{1,2,3}
+    //&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x7ED9;&#x6570;&#x7EC4;&#x8D4B;&#x503C;
+    fmt.Println(array1)
+    //&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x4E5F;&#x662F;&#x6570;&#x7EC4;&#x58F0;&#x660E;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;&#x4E14;&#x521D;&#x59CB;&#x5316;&#x6570;&#x7EC4;&#x7684;&#x503C;&#x4E3A;{1,2}
+    array2 := [2]int {1,2}
+    fmt.Println(array2)
+
+    if array1 == array2{
+        fmt.Println(&quot;true&quot;)
+    }else{
+        fmt.Println(&quot;false&quot;)
+    }
+}
+</code></pre><p> <strong>&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#xFF1A;</strong></p>
+<pre><code># command-line-arguments
+.\test.go:13:12: invalid operation: array1 == array2 (mismatched types [3]int and [2]int)
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong>
+&#x7A0B;&#x5E8F;&#x62A5;&#x9519;&#xFF0C;&#x5373;&#x4E0D;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x3002;</p>
+<h4 id="&#x603B;&#x7ED3;&#xFF1A;"><a name="&#x603B;&#x7ED3;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#&#x603B;&#x7ED3;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x603B;&#x7ED3;&#xFF1A;" class="plugin-anchor" href="#&#x603B;&#x7ED3;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x603B;&#x7ED3;&#xFF1A;</h4>
+<p>&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#xFF0C;&#x9996;&#x5148;&#x5728;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x65F6;&#x6B64;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x662F;&#x53EF;&#x6BD4;&#x8F83;&#x7C7B;&#x578B;&#xFF0C;&#x5982; map&#xFF0C;[]&#x5207;&#x7247;&#x662F;&#x4E0D;&#x53EF;&#x6BD4;&#x8F83;&#x7C7B;&#x578B;&#x3002;&#x5728;&#x53EF;&#x6BD4;&#x8F83;&#x7C7B;&#x578B;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x5FC5;&#x987B;&#x662F;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x4E14;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#x624D;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x3002;</p>
+<h2 id="&#x5207;&#x7247;"><a name="&#x5207;&#x7247;" class="anchor-navigation-ex-anchor" href="#&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5207;&#x7247;" class="plugin-anchor" href="#&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5207;&#x7247;</h2>
+<h3 id="&#x4ECB;&#x7ECD;_1"><a name="&#x4ECB;&#x7ECD;_1" class="anchor-navigation-ex-anchor" href="#&#x4ECB;&#x7ECD;_1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4ECB;&#x7ECD;" class="plugin-anchor" href="#&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ECB;&#x7ECD;</h3>
+<p>&#x5728;Go&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x5207;&#x7247;&#x662F;&#x6570;&#x7EC4;&#x7684;&#x4E00;&#x79CD;&#x9AD8;&#x7EA7;&#x8FD0;&#x7528;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x5207;&#x7247;&#x662F;&#x4E00;&#x79CD;&#x66F4;&#x52A0;&#x65B9;&#x4FBF;&#xFF0C;&#x7075;&#x6D3B;&#xFF0C;&#x9AD8;&#x6548;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;&#xFF0C;&#x5207;&#x7247;&#x5E76;&#x4E0D;&#x5B58;&#x50A8;&#x4EFB;&#x4F55;&#x5143;&#x7D20;&#x800C;&#x53EA;&#x662F;&#x5BF9;&#x73B0;&#x6709;&#x6570;&#x7EC4;&#x7684;&#x5F15;&#x7528;&#xFF08;&#x4E0D;&#x662F;&#x503C;&#x62F7;&#x8D1D;&#xFF0C;&#x662F;&#x6307;&#x9488;&#xFF09;</p>
+<h3 id="&#x5B9A;&#x4E49;&#x5207;&#x7247;"><a name="&#x5B9A;&#x4E49;&#x5207;&#x7247;" class="anchor-navigation-ex-anchor" href="#&#x5B9A;&#x4E49;&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9A;&#x4E49;&#x5207;&#x7247;" class="plugin-anchor" href="#&#x5B9A;&#x4E49;&#x5207;&#x7247;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9A;&#x4E49;&#x5207;&#x7247;</h3>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+func main() {
+
+    array1 := [3]int{1,2,3}
+    //&#x5C06;&#x6570;&#x7EC4;&#x4E0B;&#x6807;&#x4ECE;1&#x5904;&#x5230;&#x4E0B;&#x6807;2&#x5904;&#x7684;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x5207;&#x7247;(&#x524D;&#x95ED;&#x540E;&#x5F00;)
+    slice1 := array1[1:2]
+    fmt.Println(slice1)
+
+    slice2 := []int{1,2,3}
+    fmt.Println(slice2)
+
+    slice3   := make([]int,3,6)
+    //&#x7ED9;&#x5207;&#x7247;&#x8D4B;&#x503C;
+    slice3[0] = 0
+    slice3[1] = 1
+    slice3[2] = 2
+    //&#x901A;&#x8FC7;len([]Type) cap([]Type)&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x67E5;&#x770B;&#x5207;&#x7247;&#x7684;&#x957F;&#x5EA6;&#x548C;&#x5BB9;&#x91CF;
+    fmt.Println(slice3)
+    fmt.Println(len(slice3),cap(slice3))
+}
+</code></pre><p><strong>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code>[2]
+[1 2 3]
+[0 1 2]
+3 6
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong></p>
+<p>&#x4EE5;&#x4E0A;&#x793A;&#x4F8B;&#x7528;&#x4E09;&#x79CD;&#x65B9;&#x5F0F;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5207;&#x7247;&#xFF0C;&#xFF08;&#x8FD9;&#x91CC;&#x5927;&#x5BB6;&#x6709;&#x4E2A;&#x7591;&#x95EE;&#xFF0C;&#x6211;&#x4E0D;&#x7BA1;&#x600E;&#x4E48;&#x770B;&#x90FD;&#x89C9;&#x5F97;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x554A;&#xFF09;<strong>&#x8BB0;&#x4F4F;&#xFF0C;&#x518D;go&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x533A;&#x522B;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x662F;&#x6570;&#x7EC4;&#x8FD8;&#x662F;&#x5207;&#x7247;&#xFF0C;&#x5C31;&#x770B;&#x6709;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x957F;&#x5EA6;&#xFF0C;&#x6709;&#x5B9A;&#x4E49;&#x957F;&#x5EA6;&#x5C31;&#x662F;&#x6570;&#x7EC4;&#x53CD;&#x4E4B;&#x5C31;&#x662F;&#x5207;&#x7247;&#x3002;</strong> </p>
+<h2 id="&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;"><a name="&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;" class="plugin-anchor" href="#&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x7EC4;&#x548C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5B58;&#x50A8;</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/17904159-d4e5fcdbb49d46ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="array_slice.png"></p>
+<p>&#x57FA;&#x4E8E;&#x4E0A;&#x56FE;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x5207;&#x7247;&#x7684;&#x5E95;&#x5C42;&#x5C31;&#x662F;&#x6570;&#x7EC4;&#xFF0C;&#x5207;&#x7247;&#x662F;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x7684;&#x5F62;&#x5F0F;&#x6307;&#x5411;&#x4E0D;&#x540C;&#x6570;&#x7EC4;&#x7684;&#x4F4D;&#x7F6E;&#x4ECE;&#x800C;&#x5F62;&#x6210;&#x4E0D;&#x540C;&#x7684;&#x5207;&#x7247;&#xFF0C;&#x5207;&#x7247;&#x5BF9;&#x672C;&#x8EAB;&#x5143;&#x7D20;&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x4E5F;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x6570;&#x7EC4;&#x548C;&#x5176;&#x5B83;&#x7684;&#x5207;&#x7247;&#x3002;&#x770B;&#x4E0B;&#x9762;&#x793A;&#x4F8B;&#x4EE3;&#x7801;</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+)
+func main() {
+
+    array11 := [5]int{1,2,3,4,5} //[1,2,3,4,5]
+    slice11 := array11[0:3] //[1,2,3]
+    slice11[0] = 10 //[10,2,3]
+    sliceTemp := append(array11[:2],array11[3:]...) //[10,2,4,5]
+    slice11[0] = 11 //[11,2,4]
+    fmt.Println(array11,slice11,sliceTemp) //[11,2,4,5,5] [11,2,4] [11,2,4,5]
+
+}
+</code></pre><p><strong>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code>[11 2 4 5 5] [11 2 4] [11 2 4 5]
+</code></pre><p><strong>&#x6CE8;&#x91CA;&#xFF1A;</strong>
+&#x7B2C;&#x4E00;&#x884C;&#xFF1A;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A;5&#xFF0C;&#x4E14;&#x5B58;&#x50A8;&#x7684;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x662F;int&#x7684;&#x6570;&#x7EC4;array11&#x5E76;&#x4E14;&#x521D;&#x59CB;&#x5316;&#x4E3A;[1,2,3,4,5] </p>
+<p>&#x7B2C;&#x4E8C;&#x884C;&#xFF1A;&#x57FA;&#x4E8E;&#x6570;&#x7EC4;array11&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x5207;&#x7247;slice11&#xFF0C;&#x5207;&#x7247;&#x5185;&#x5BB9;&#x662F;array11&#x6570;&#x7EC4;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5230;&#x7B2C;&#x4E09;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5207;&#x5206;&#x3002;&#x503C;&#x4E3A;[1,2,3]</p>
+<p>&#x7B2C;&#x4E09;&#x884C;&#xFF1A;&#x5C06;&#x5207;&#x7247;&#x7684;slice11&#x7B2C;1&#x4E2A;&#x5143;&#x7D20;&#x91CD;&#x65B0;&#x590D;&#x5236;&#x4E3A;10&#xFF0C;&#x5373;slice11&#x503C;&#x4E3A;[10,2,3].&#x7531;&#x4E8E;&#x5207;&#x7247;&#x662F;&#x6307;&#x5411;&#x6570;&#x636E;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x56E0;&#x4E3A;&#x91CD;&#x65B0;&#x8D4B;&#x503C;&#x5C31;&#x662F;&#x5C06;&#x6570;&#x7EC4;&#x5BF9;&#x5E94;&#x4E0B;&#x6807;&#x7684;&#x503C;&#x6539;&#x6389;&#x3002;&#x6B64;&#x65F6;&#x6570;&#x7EC4;array11&#x7684;&#x503C;&#x4E3A;[10,2,3,4,5]</p>
+<p>&#x7B2C;&#x56DB;&#x884C;&#xFF1A;&#x57FA;&#x4E8E;&#x6570;&#x7EC4;array11&#x521B;&#x5EFA;&#x5207;&#x7247;sliceTemp&#xFF0C;&#x6240;&#x53D6;&#x7684;&#x503C;&#x662F;&#x6570;&#x7EC4;array11&#x524D;&#x4E24;&#x4E2A;&#x5143;&#x7D20;[10,2]&#x548C;&#x540E;&#x4E24;&#x4E2A;&#x503C;[4,5]&#x6240;&#x4EE5;sliceTemp&#x503C;&#x4E3A;[10,2,4,5]&#x3002;&#x6B64;&#x65F6;sliceTemp&#x662F;&#x7531;&#x4E8E;&#x6570;&#x7EC4;array11&#x4F5C;&#x4E3A;&#x539F;&#x6570;&#x7EC4;&#xFF0C;&#x5C06;&#x5176;&#x524D;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x4FDD;&#x7559;[10,2]&#x518D;&#x5C06;&#x540E;&#x4E24;&#x4E2A;&#x5143;&#x7D20;[4,5]&#x505A;&#x91CD;&#x65B0;&#x8D4B;&#x503C;&#x7ED9;array11&#x7B2C;&#x4E09;&#x4E2A;&#x548C;&#x7B2C;&#x56DB;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x6B64;&#x65F6;array11&#x7684;&#x503C;&#x5C31;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#x4E3A;[10,2,4,5,5]</p>
+<p>&#x7B2C;&#x4E94;&#x884C;&#xFF1A;slice11&#x53C8;&#x91CD;&#x65B0;&#x7ED9;&#x7B2C;1&#x4E2A;&#x5143;&#x7D20;&#x590D;&#x5236;&#x4E3A;11&#xFF0C;&#x7531;&#x4E8E;&#x7B2C;&#x56DB;&#x884C;&#x64CD;&#x4F5C;&#x5DF2;&#x7ECF;&#x6539;&#x53D8;&#x4E86;array11&#x7684;&#x503C;,&#x56E0;&#x6B64;slice11&#x7684;&#x503C;&#x4E5F;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x4E3A;[11,2,4,5,5]&#xFF0C;&#x6B64;&#x65F6;slice11&#x7684;&#x503C;&#x4E3A;[11,2,4]&#x3002;
+sliceTemp&#x7684;&#x503C;&#x4E5F;&#x53D8;&#x4E3A;[11,2,4,5]</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Golang-closure.html" class="navigation navigation-prev " aria-label="Previous page: Golang 闭包函数">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Golang-range.html" class="navigation navigation-next " aria-label="Next page: Golang range的坑">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Golang 切片和数组","level":"1.3.8","depth":2,"next":{"title":"Golang range的坑","level":"1.3.9","depth":2,"path":"basis/Golang-range.md","ref":"basis/Golang-range.md","articles":[]},"previous":{"title":"Golang 闭包函数","level":"1.3.7","depth":2,"path":"basis/Golang-closure.md","ref":"basis/Golang-closure.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/FrederickHou/Golang-notes"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"","alipayText":"支付宝打赏","button":"赞赏","title":"","wechat":"https://github.com/FrederickHou/Kubernetes-notes/blob/master/source/images/wechat.jpg?raw=true","wechatText":"感谢打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","bookmark":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/images.png","appleTouch":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","appleTouchMore":{"120x120":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png","180x180":"https://github.com/FrederickHou/Kubernetes-notes/tree/master/source/images/kubernetes-card.png"}},"github-buttons":{"buttons":[{"user":"frederickhou","repo":"Golang-notes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"sharing":{"facebook":false,"qq":false,"qzone":false,"twitter":false,"weibo":false,"all":["facebook","weibo","twitter","qq","qzone"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Frederick hou","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Golang 学习笔记","language":"zh-hans","links":{"sidebar":{"我的博客":"https://www.frederickhou.com"}},"gitbook":"3.2.3","description":"在成为极客的路上"},"file":{"path":"basis/Golang-array-slice.md","mtime":"2020-04-14T08:07:12.169Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T10:07:10.543Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
